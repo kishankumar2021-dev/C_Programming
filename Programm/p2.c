@@ -1,11 +1,9 @@
-//wap programm area of circle
+//wap to find squre of a number
 #include<stdio.h>
-int main()
+void main()
 {
-	int r;
-	float area,pi=3.14;
-	printf("Enter radius of circle :\n ");
-	scanf("%d",&r);
-	area=r*r*pi;
-	printf("Arae of circle = %f ",area);
+	
+	int num;
+	num=20;
+	printf("squre of a value is :%d",num*num);
 }
