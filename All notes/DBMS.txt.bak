@@ -1,0 +1,1136 @@
+Database Management System:
+---------------------------
+.net(Visual Studio-IDE) --> MSSQL
+PHP                     --> MYSQL
+PYTHON                  --> MONGODB/SQLITE
+ANDROID                 --> FIREBASE
+
+DBMS:  Dbms is a software that is used to manage data at backend side. DBMS provides facility to store manipulate and 
+	   access data from the data base.
+	
+=>DBMS also proides many facilities to make sure that right data is being stored in the  database.
+	
+=>DBMS provides table structure to developer to store and manage data.
+	
+=>there are many application of DBMS is present, you can use any one of these to store and manage data.
+=>Like: MYSQL,MSSQL ,MSACCESS,ORACLE , MONGODB,SQLITE..........
+	
+	To communicate with all application of DBMS , there is a systematic way ,that is SQL.
+	
+		SQL:
+		~~~~
+			 SQL stands for structured query language. it provides some pre-define syntax of queries. these queries are used to create,manipulate and access data in the DBMS Application.
+			 
+			 SQL mainly provides a way to work with Dbms application.
+			 
+			 Standard way to store data in DBMS is:
+			 
+					Database -> Tables->Rows/tuples & Columns/Fields ->Database
+			 
+			 ---------------------------------------------------------------------------------------------
+
+	Types of SQL Commands:
+	
+	1. DDl: Data Definition language
+	2. DML: Data Manipulation language
+	3. TCL: Transaction Control Language
+	4. DCL: Data Control Language 
+	
+	
+	DDL : DDL stands for data definition language. it has some queries list, which specify the schema of table.
+		that means all ddl commands are applied on the schema of table.
+		
+		1. Create
+		2. Alter
+		3. Truncate
+		4. Drop
+		5. Rename
+		
+	DML : DML stands for Data Manipulation Language. it has some queries that is applied on data/records of table.
+		  DML commands are used to create, manipulate and access the records of table.
+		  
+		  1. Insert
+		  2. Update
+		  3. Delete
+		  4. Select
+		  
+	TCL : TCL stands for Transaction Control Language. TCL have some commands that is used to control the transaction 
+	      of database.
+		  
+		  1. commit
+		  2. Rollback                           //undo
+		  3. Save transaction
+		  
+	DCL : DCL stands for Data Control Language. DCL commands are used to define users of databasethat who can access 
+		  the data and who can read and write both on database.
+	
+		  1. Grant
+		  2. Revoke
+		  
+	Data Type: 
+		
+		Numeric:
+		
+				INTEGER(it stores all, group of int type )
+				Int
+				Shortint
+				Longint
+				float
+				money
+				
+		char:
+		
+				char: name char(100): fixed length string
+				varchar: name varchar(100): variable length string
+				nchar:(multi languages fixed length string)
+				nvarchar:(multi language variable length string)
+				text:(long size string)
+				
+		date:
+				used to store date in pre-defined format like yyyy-mm-dd
+				
+				Date : only date : yyyy-mm-dd
+				Time : only time : hh:mm:ss
+				Datetime : collection of date and time :  yyyy-mm-dd hh:mm:ss
+				
+				
+				
+		
+-----------------------------------------------------------------
+		
+		Commands:
+		
+		create - create command is used to make a new database or table.
+				
+				Syntax to create database :
+						create database database_name;
+						
+				syntax to create table :
+						create table table_name
+						(
+						field_name datatype(size),
+						field_name datatype(size),
+						---
+						---
+						--
+						);
+						
+	--------------------------------------------------------
+		use database_name; //for select database
+		create table student
+		(
+		name char(30),
+		age int,
+		
+		);
+	--------------------------------------------------
+	
+			Integrity Constraints:
+			~~~~~~~~~~~~~~~~~~~~~~
+			
+					integrity constrains are used with create command that is used to make sure that 
+			integrity of database will not be distubed.
+			
+			So integrity constraints are some keywords that is used to make sure that your table will 
+			hols\d correct data.
+			
+					1. Not null: Not null defines that this field can not be null for any tuple.
+					2. Default: It sets s by-default value for fields that will be automatic inserted 
+					when this field 
+									is NULL.
+					3. Unique: duplicate value is not accepted, but null value is accepted.
+					4. Primary Key: unique + not null: duplicate value and null value is not accepted.
+					5. Foreign Key: It stores a value that is already a primary key colum value in another 
+					table.
+					6. check: check validates a value that is inserted into table before insertion.
+
+------------------------------------------------------------------------------------------------------------------
+	
+		Create table : 
+		
+		create table employee
+		(
+		Empid int primary key,
+		Emp_name char(50) not null,
+		salary int check(salary>10000 and salary <50000),
+		Mobile_no char(13) default'7007237006',
+		age int check(age>15)
+		);
+
+		-----------------------------------------------------
+		Insert data in table
+		
+		Insert: insert command is used to add new tuples in table.
+		
+		syntax -
+		~~~~~~~
+			insert into table_name values(value_1,value_2,value_3,.........);
+			
+			Ex-
+			insert into employee values(1,'Riya Singh',40000,'908776655',20);
+			
+syntax2 - 
+~~~~~~~
+		
+insert values in specified column,remains left NULL,
+				
+insert into table_name(column_name_1,column_name_2,column_name_3...)values(value_1,value_2,value_3,...);
+		  
+		Ex-
+			insert into employee(Empid,salary)values(2,30000);
+		  
+		BULK INSERTION:
+		---------------
+				You can insert multiple rows with single insert command by seprating each rows  by comma.
+				
+				Insert into table_name values(3,'Ram',15000,'6728730792',20),(4,'Riya',20000,'',25);
+			
+		  insert into employee values(5,'Vibha'),(6,'Ankita');
+		  
+		  
+Identity:
+~~~~~~~~
+Identity property can be used only with integer type column.
+it is used to increment column value automatic. In some DBMS application it is known as Auto_increment.
+				
+				
+			Syntax - 
+			
+			column_name data_type(size) identity(seed,increment);
+				
+					seed: starting value
+					increment: how much value would plus to max value of column
+					
+					identity(100,5);   //100  105  110
+				
+			Create a table with id should be primary key and name should have default value user.
+			
+			Create table trainees
+			(
+			id int primary key identity(1,1),
+			name char(20) default 'user'
+			);
+			
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1/11/2021
+		
+Select=>
+--------		
+		Select is a DML command that is used to fetch records that is already saved in table.
+		Select is used to fetch a part of data from the complex data.
+		conditions are apply to select command to fetch any specific data from table.
+		
+			
+			Syntax to select all column of all rows of table:
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+												select * from table_name;
+												
+											EX-
+											----
+												select * from employee;
+
+				
+			to select specific  columns of all rows of  table:
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+									select column_name_1,column_name_2 from table_name;
+									
+									EX-
+									----
+						select Emp_name,Email from employee;									
+			
+to select specific rows we apply conditions with select command then only those rows will be 
+selected which satisfied the given condition:
+			
+			select column_name from table_name where<condition>;
+			Ex-
+			----
+				select * from employee where empid=110;
+				select Emp_name,salary from employee where Emp_name='Ram Singh';
+
+			
+				types of condition 
+				
+				1. =
+				2. >
+				3. <
+				4. >=
+				5. <=
+				6. <>  //is not equal to 
+				7.  and
+				8.  or
+				9.  in
+				10. Not in 
+				11. Between
+				12. Is null
+				13. Is not null
+				14. like
+				
+				Example--
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+					=:
+						select * from employee where empid=110;
+						select Emp_name,salary from employee where Emp_name='Ram Singh';
+
+					>:
+						select * from employee where salary>30000;
+						
+					>=:
+						select * from employee where salary>=30000;
+						select Emp_name from employee where salary>=30000;
+						
+					<=:
+						select * from employee where salary<=30000;
+						select Emp_name from employee where salary<=30000;
+						
+					<>:
+						select * from employee where Department<>'HR';
+						  (is not equals to ignore Null value also.)
+						  
+					and:
+				    when you have to apply two conditions on each row, then both conditions are attached with and operator.
+						
+						EX-
+							select * from employee where salary>20000 and department='HR';
+							select * from employee where empid>110 and salary>30000;
+					
+
+						 
+					or:
+						or is also used to attact two conditions. Those rows who satisfied any one condition will be selected.
+						Ex-
+			
+				select * from employee where empid=109 or empid=110;
+					
+					like: 
+						like operator is used to compare data with a part of data or pattern when you have concept of 
+						part of data or you have a pattern behalf of that you want to select data from table then like operator is used with condition.
+						
+						%
+						_
+						
+					
+							Syntax
+							------------
+									select */column_name from table_name where column_name like 'pattern'
+									
+									To create pattern : you can use % or _
+									
+									% - ignores characters
+									_ - ignores only a single characters
+									         
+									Ex - 
+									----
+										where name like '%singh' : select all rows where name ends with singh.
+										
+										where college like 'Feroze%' : select all rows where college name starts with Feroze.
+										
+										where college like '%gandhi%' : select all rows where gandhi presents somewgere
+										
+										where mobno like '9_________': select all numbers started with 9
+										
+					order by : 
+					-----------
+							In table, data is saved in random manner, if you want to arrange data behalf of a column then order by is used.
+							
+						Numeric - ascending(smaller-onwards)/descending(greater - lower)
+						string - ascending(a-z)/descending(z-a)
+	
+					Syntax:
+					-------
+						select */column_name from table_name where <condition> order by column_name<desc>
+						
+					Ex-
+					---
+						select * from tbl where batch = 'All' order by id desc
+						
+						
+predefine function of database 
+---------------------------
+
+Aggregate Function:
+---------------------
+		Aggregate function are some functions that operates on multiple values and provides a single output.
+				 
+				sum(),count(),avg(),min(),max()
+		
+		it can be only used with select command. it is only used after select keyword to select a value as a column .
+		it can be applied only on numeric value/columns.
+
+		select sum(fee)
+		select count(college)
+		select max(fee) from stpayment
+		select count(*) from table_name
+		select count(column_name)from table
+		select sum(fee) from tablename where uname like 'TechpileST21%'
+		
+		Note: count function ignores null values. that means the column which contain null value is not counted by 
+			  count() function. 
+			  
+		
+		string function : 
+					len():
+					upper() : select upper(name) from table_name
+					lower() : select lower(name) from table_name
+					ltrim() : select ltrim('   techpile technology') from table_name  //removes all left side spaces 
+								from the string.
+								
+					Rtrim() : select rtrim('techpile technology   ') from table_name
+					substring(): used to extract a small part of string from a long string,
+					
+					Ex-
+					----
+					select upper(ltrim(rtrim(name))) from ststudent 
+					
+					EX-
+					----
+						select len(name) as length,lower(name) as studentname from ststudent
+		
+			
+					substring(): used to extract a small part of string from a long string,it takes three prameter
+									(part of a string)
+						
+						syntax-
+						------- 
+								select substring(string,starting_index,no. of characters+1)
+
+						Ex-
+							select substring('techpile',4,6) //hpile
+							select substring(uname,0,13)
+
+					Date & Datetime function :
+					
+							Getdate()   it is a function which return current date and time.
+							Current_TIMESTAMP: it is a property which returns current date and time.
+							
+							select getdate(),Current_TIMESTAMP
+							
+							datename()
+							dateadd()
+							datediff()
+							convert()
+
+------------------------------------------------------------------------------------------------------------------------
+08/11/
+
+two parts of data
+1. schema -> structure of table
+2. records -> 
+
+-----------------------------------------------------------------------------------
+ datediff() - 
+ -------------
+				select datediff(year,'2020-01-04',getdate())
+				select datediff(day,'2020-01-04',getdate())
+				select datediff(month,'2020-01-04',getdate())
+				
+				it returns a integer type value
+
+ datename() - 
+ ------------
+				select DATENAME(day,getdate())as day, 	
+				datename(MONTH, getdate())as month,
+				datename(year,getdate())2 year,
+				datename(weekday,getdate()) as weekday,
+				datename(dayofyear,getdate())as dayofyear,
+				datename(week,getdate()) as week;
+				
+				
+having
+group by
+joining
+
+update:
+-------
+		update is a dml command it is used to modify pre-existing records of table.
+		it is applied on columns, if you want to make change in any value of table then update command is used.
+		
+		syntax:
+		-------
+			update table_name set column_name = value where<condition>
+		
+		Ex-
+		---
+			update stpayment set fee=5000,mode='cash' where pid=6398
+
+delete:
+-------
+		delete is a dml command used to remove a whole row from the table.
+		to delete any particular row you can apply conditions with delete command.
+		
+		Syntax:
+				delete from table_name; 
+								-delete all row of table but not permanently.these deleted rows can be restored.
+				
+				delete from table_name where <condition>; to delete any specific row from table.
+						
+		Ex-
+		---
+			delete from app where rollno=1
+
+-------------------------------------------------------------------------------------------------------------------------
+10/11/2021
+
+Alter - 
+------
+		Alter is  a ddl command used to modify schema of table. many types of changes/modification you can perform by using alter command
+		
+		1. To add a new column in existing table:
+			 
+			column_name data_type(size) keys(primary/unique) constraints(check,default,null,identity)
+		
+		Syntax:
+		-------
+				Alter table table_name add column_name data_type(size);
+				
+				alter table department add loction varchar(200) not null;
+		
+		2. to drop any existing columns from table:
+			
+			alter table table_name drop column column_name;
+			
+			alter table department drop column loction;
+			alter table department drop column column start_date;
+		
+		3. to drop any constraints from table:
+				alter - drop can also drop the constraints or keys applied on the table 
+				
+				Syntax - 
+					alter table table_name drop constraint constraint_name;
+				Ex-
+					alter table teacher drop constraint CK__teacher__salary__37A5467C;
+						
+						CK__teacher__salary__37A5467C  is a auto-generated constraint name.
+						
+		4. to drop any constraint and column from a table
+			
+			Syntax-
+				
+				alter table table_name drop constraint constraint_name,column column_name;
+			Ex-
+				alter table teacher drop constraint [DF__teacher__name__36B12243],column name;
+				
+		5. to drop a whole table with schema
+			
+			Syntax - 
+					
+					drop table table_name;
+					
+			Ex-
+					drop table teacher;
+					
+	Note - we can't delete /drop a column using alter command from a table when only one column exists in a table.
+	
+		6. to change data type and size of existing columns:
+			
+			Syntax -
+			
+				alter table table_name alter column column_name data_type(size)
+			
+			Ex- 
+				alter table department alter column hod char(100);
+				
+	Note - by using alter command you can only increase the size of column can't decrease the size.
+			
+	
+	Drop: 
+	-----
+		Drop is a ddl command used to permanently remove table with schema and records.
+			that means  drop remove the whole table , drop removes the existing of table.
+			
+			Syntax-
+				drop table table_name
+				
+	Truncate: 
+		Truncate command is used to removes all the saved records of table permanently.
+		Records deleted with truncate command can't be restored.
+		Truncate saved the schema of table for future use but removes all the records.
+				
+			Syntax-
+		   ---------
+				truncate table table_name
+				
+	TOP Clause-
+   -------------
+			Top clause restrict the total returning rows of select command. Top clause specifies the total number of rows you want to select with select command
+			
+			Syntax - 
+			---------
+				select top no_of _rows column_name/* from table_name;
+			Ex-
+				select top 3* from student;
+				select top 4 name from student;
+				select top 4 name,fee from student;
+				
+				
+				
+				select top 10 name,rollno from student where name like 'a%';
+				
+	Sub-queries:
+	-------------
+			1. Sub-queries are written within any other query.
+			2. Sub-queries are always written within()
+			3. Sub-queries can be used with select,update,delete,any command
+			4. sub-queries should always return only one column.
+			5. if you want to use result of another query within a query then seb-queries are used.
+		
+	
+	to get the record of max fee student
+		Ex-
+			select * from student where fee = (select max(fee) from student);
+			
+	to get record of min fee student		
+		Ex-
+			
+			select * from student where fee = (select min(fee) from student);
+			
+			here, (select min(fee) from student) is a sub-query.
+
+	to update a student fee (to maxfee+5000) whose rollno is 5
+	
+		update student set fee = (select max(fee)+5000 from student) where rollno=5;
+		
+	to set a mobile no to other's
+				
+		update student set mobno = (select mobno from student where rollno=1) where rollno= 4;
+		
+Distinct(Unique):
+-------------------
+			distinct used with select command.
+			used to select set of unique values only.
+			
+			Ex- 
+				select distinct salary from employee; 
+				select distinct age from employee;
+				select distinct salary from employee order by salary desc; 
+				
+to select 2nd largest salary of a employee 
+-------------------------------------------
+				
+select distinct top 1 salary from employee where salary<>(select max(salary) from employee)order by salary desc;
+			
+-------------------------------------------------------------------------------------------------------------------------
+
+	Joining
+   ~~~~~~~~~~
+   
+  joining is used to select records from two or more tables where all tables has some common fields.
+  
+  Types of joinig:
+  ----------------
+  
+  1. Inner join
+  2. Left outer join
+  3. Right outer join
+  4. Full outer join
+  5. Cross join
+  6. Self join
+  
+  1. Inner join -  inner join selects only common records of all tables.
+	
+		Syntax -
+				select table1name.column_name,table2name.column_name from first_table_name inner join second_tble_name on first_table_name.common_columm_name = second_tble_name.common_columm_name
+
+		Ex-
+			select student.name,student.mobno,department.dep_name,department.Hod from student inner join department on student.depid = department.depid
+			
+			
+			
+  2.  Left outer join - left join is used to select all records from left table and only matchd records from second 	
+							table.
+				Note - The values which is not present in second table by default null value is put at that place.
+				
+			Syntax:
+					select table_name.column_name(s) from left_table_name left join right_table_name on Table_name.common_column_name = table_name.common_columm_name
+					
+			Ex-
+					select student.name,student.mobno,department.dep_name,department.Hod from student left join department on student.depid = department.depid
+					
+					
+					select student.name,student.mobno,department.depname,department.Hod from department left join student on student.depid = department.depid;
+					
+  3. Right outer join - Right join is used to select all records from  right table and only matched.common records from 
+							second table.
+  
+			Syntax:
+					select table_name.column_name(s) from left_table_name right join right_table_name on left_Table_name.common_column_name = right_table_name.common_columm_name
+  
+			Ex- 
+					
+					select student.name,student.mobno,department.depname,department.Hod from department right join student on student.depid = department.depid;
+					
+  4. Full outer join - it returns all record from both tables.
+
+			Syntax:
+					select first_table_name.column_name(s),second_tble_name.column_name from first_table_name full outer join second_table_name on first_Table_name.common_column_name = Second_table_name.common_columm_name
+  
+  
+			Ex-
+					select student.name,student.mobno,department.depname,department.Hod from department FULL OUTER join student on student.depid = department.depid;
+					
+alias naming :
+		select s.name,d.depname from student s inner join department d on s.depid = d.depid;
+					
+Group BY: group by clause i
+s used to make group of one or more records(rows) that has same value based on a column.
+			
+		when you are using group by clause with select statement you can only select the column which are using in group by or you can use any aggregate function with select.
+			
+		Syntax-
+				select column_name,aggregate_function(column_name) from table_name group by column_name
+			
+		Ex-
+			select depid from department group by
+			depid
+			
+			select depid,count(*) from student group by depid
+ 
+			select depid,count(*),sum(fee) from student group by depid
+			
+having : having clause is used for condition in group by clause.
+	
+	Ex-
+			select depid,count(*),sum(fee) from student group by depid having sum(fee)>=30000
+					
+ --------------------------------------------------------------------------------------------------------------
+
+update table employee set salary = (select max(salary) from employee) where empname='Satish';
+
+select * from employee where empid>=1004 and empid<=1008
+
+--------------------------------------------------------------------------------------------------------------
+
+ ORACLE : Pl/SQL(Advance sql)
+ MSSQL : T-sql: Transact SQLITE
+ 
+ T-SQL :
+ ~~~~~~
+		T-SQL stands for Transact SQL. It provides some advance tools to perform different operations in database.
+		
+		Tool of T-SQL:
+		~~~~~~~~~~~~~~~
+		
+		1. User-defined variables
+		2. Control flow statement
+								Begin-end
+								If-else
+								while
+								Try-catch
+								
+		parts of T-SQL :
+		----------------
+			
+			standard sql - ddl,dml
+			Batch or Scripts
+			Triggers
+			User-defined variables
+			Stored procedure
+			User defined function
+								
+		1. User-defined variables :
+							
+							User-defined variables are just a name used to store data from the outside world. In T-SQL mainly 
+							variable are declared with pre-fix Declare and always variables are declares with 
+							following syntax;---
+									DECLAE @_variable_name datatype(size),.......... . . 
+							Ex- 
+									
+									Declare @name varchar(100),@salary int ;
+							Note -by default value of user -defined variables is NULL.
+										
+						Assign value to the variable: 
+						~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+						
+	There is two way to assign value to the variable:
+	
+	1. By using set keyword - 
+					Set keyword is used to assign any value to the single one variable.
+					
+		Ex- 								
+			declare @name varchar(100),@salary int;
+			set @name = 'techpile';
+			set @salary = 50000;
+			select @name as username,@salary+10000 as salary;
+			
+		Ex-
+	
+		To get sum of two numbers 
+
+			declare @a int,@b int;
+			set @a=5;
+			set @b=4;
+			select @a+@b as Sum;
+	
+	2. By using select keyword - 
+						select keyword is used to setvalues to the variable. but by using select you can set multiples values to different variables at one time.
+
+			Syntax - 
+			
+					select @variable_name = value
+					@variable_name = value.........
+					
+			Ex - 
+			
+			assigning value to variable from a table.
+			
+				declare @name varchar(100),@salary int;
+				select @name = empname,@salary  = salary from employee;
+				select @name as username,@salary+10000 as salary;
+					
+			assigning value to a variable directly
+											
+											
+												declare @name varchar(100),@salary int;
+												select @name = 'techpile',@salary  = 40000;
+												select @name as username,@salary+10000 as salary;
+				
+			How to create sql query with case - 
+		   -----------------------------------
+				case - 
+					case is used to select any column/field based on the given condition. so normally case is used to apply condition within a query.
+					
+					Syntax - 
+							case when<condition> then <statement>
+					
+					Ex-
+					----
+							select emp_name;
+							case when salary between 20000 and 40000 then salary+10000
+							end
+							from employee
+							
+				if-else 
+				--------
+					
+					Syntax -
+					---------
+							case 
+							when<condition> then statement
+							else 
+							statement
+							end
+					Ex- 
+					----
+							select Emp_name,salary,
+							case when salary between 20000 and 40000 then 'Jr Employee'
+							else 'Sr. Employee' end
+							from employee;
+							
+							select emp_name,salary,
+							case 
+							when salary between 20000 and 40000 then 'jr. Employee'
+							else concat((salary+10000),' ')
+							end
+							from employe
+							
+							select emp_name,salary,
+							case
+							when salary between 20000 and 40000 then 'Jr Employee'
+							else convert(Varchar,(salary+10000))
+							end
+							from employe;
+							
+				Multiple Condition - 
+						
+						
+						case 
+						when<condition> then statement
+						when<condition> then statement
+						when<condition> then statement
+						---
+						---
+						else statement
+						end
+						
+					Ex-
+					---
+						select emp_name,salary,
+						case
+						when salary between 1000 and 20000 then 'jr developer'
+						when salary between 20001 and 40000 then 'Sr. developer'
+						when salary>40000 then 'Manager'
+						end,
+						age from employe.
+						
+						select 
+						case 
+						when salary between 2000 and 40000 then 'jr employee'
+						end,
+						case when salary between 40001 and 50000 then 'Sr Employee'
+						end
+						from employe;
+						
+			Begin-End :
+		   ------------
+						Begin end is keywords of sql also known as control flow statement,
+						BEGIN-END contains Batch(collection of script).
+						
+						That is used to define range of if or else or any conditional statement.
+						
+						Begin-End can be nested.
+						Begin-End is used to define block of conditional or flow control statement like if,else,while etc.
+						
+					Syntax-
+					--------
+							if(condition)
+							  begin
+							    //batch
+							  end
+							else if(condition)
+							  begin
+							    //batch or queries
+							  end
+							  
+					Ex- 
+					
+							declare @salary int,
+							@action int
+							set @salary = 20000
+							set @action = 2
+							if(@action =1)
+							begin
+							update employee set Emp_name = 'User' where salary = @salary
+							select * from employe
+							end
+							else if(@action =2)
+							begin
+							select * from trainees
+							end
+							
+				Try-catch
+			   -----------
+					
+					Try-catch is used to handle run time errors that may occurs at the run time of queries due to some wrong entries or anything else.
+					
+					Run-time errors of queries is handle by try-catch in sql
+					catch comes always after try-block.
+					catch block executes only if there is any error in try-block.
+					
+					if there is any possibility of error in any time of code then those lines are put into try block with a error free message or any code within catch block.
+
+					Syntax - 
+					------
+						Begin-try
+						 //statement/queries
+						end-try
+						 begin-catch
+						 //statement/message
+						end-catch
+					Ex- 
+						declare @ salary int,
+						@action int
+						set @salary = 20000
+						set @action = 1
+						if(@action = 1)
+						   begin
+						   begin try
+						   update employe set salary = 'techpile' where salary = @salary
+						   end try
+						   begin catch
+						   print 'Error Occured'
+						   end catch
+						   select * from employe
+						   end
+						   else if(@action = 2)
+						   begin
+						   select * from trainees
+						   end
+						   
+						   
+						Note - (begin-try hamesha begin ke andar execute hoga)
+						
+				Store procedure - 
+				----------------
+					
+						Store procedure is the collection of some pre-written queries/database command.
+						benefit of stored procedure is it provides code reuseability and security to the database operation.
+						
+					Syntax to create store procedure - 
+					---------------------------------
+							
+							create procedure procedure_name
+							as 
+							begin
+							//sql statement
+							end
+							
+					You can create procedurein two ways -
+					
+					 --> Stored procedure with parameter
+					 -->stored procedure without parameter
+					 
+				TCL(Transaction Control Language) 
+			   -----------------------------------
+				
+				TCL stands for transaction control language 
+				it is used to control operation of database.
+				
+				1. Commit
+				2. Rollback
+				3. Save Transaction  
+							
+							are some commands of TCL.
+														
+		  Commit 
+		----------
+		
+			Commit is a single command used to save transaction of database permanently.
+			Insert,Update,delete are some auto commit type commands thaty after execution. means you do not need to save it separate.
+			To remove auto-commit system of database,transaction are written within begin transaction.
+			
+			Syntax - 
+		    --------
+				
+				Begin transaction
+				  //sql statement
+				  commit;
+		
+			Ex-
+			---
+								
+				begin transaction
+				insert into employe(Emp_name,Mobile_no,mobno1) values('shivam','2323534','43423432')
+				delete from employe where empid =1
+				commit
+
+				begin transaction
+				rollback
+				
+				(after commit the data saved then the executed line can't be rollback)
+				
+				
+			To remove auto commit
+			
+		ACID Property -
+		
+			A - Atomicity : all or none: all transaction should be successful or not.
+			C - Consistency : After transaction and before transaction database should be same.
+			I - Isolation : One trancaction of database should not effect another transaction of database.
+			D - Durability : Each database should have a backup system in case any accident occur with database.
+		
+					
+		  Rollback 
+		------------
+				
+				Rollback sets database to the initial position.
+				
+			Syntax - 
+			--------
+				Begin Transaction
+				Rollback
+							
+			You can rollback those those transaction which are in buffer memory.
+			Those transaction which are written with 'begin transaction' and did committed those can be rollback.  
+			
+			Note - 1. if transaction are in buffer memory than you can rollback it.(begin transaction ke baad jitne commands 
+						likhte h wo buffer memory me save hote h. )
+				   2. if transaction is written with begin and it not be commited then rollback keyword works and the data will be back as it before command's execution and if commit command executes then it can't be rollback.
+				   
+				Ex- 
+				
+					begin transaction
+					insert into employe(Emp_name,Mobile_no,mobno1) values('shivam','2323534','43423432')
+					delete from employe where empid =1
+
+					begin transaction
+					rollback
+					
+			Implicit Transaction: 
+			----------------------		
+					Control by database (controlling of transaction is done via database.)
+			Explicit Transaction:
+			---------------------
+					Control by user(controlling of transaction is done by user.)	
+			
+			  Save Transaction
+			--------------------
+					
+					Save transaction is used to set pointer to the particular location of data saved in buffer memory. and create seprate memory for transactions executed after pointer.
+					
+					It is used so that you can rollback to the specific number of transactions
+					
+					Syntax - 
+							
+							Begin transaction 
+							Save transaction <pointer_name>
+							//sql statements
+							
+					Ex -
+					
+							begin transaction
+							insert into employe(Emp_name,Mobile_no) values('shivam','232534');
+							save transaction t1
+							insert into employe(Emp_name,Mobile_no) values('shalini','6323534');
+							insert into employe(Emp_name,Mobile_no) values('vibha','3534');
+
+							begin transaction
+							rollback transaction t1
+							
+			
+			
+			Rename:
+		   ----------
+		   
+					Rename command is used to change name of existing table or columns.
+					In Mssql rename command is actually used as a stored procedure:
+					
+					Syntax to rename table name - 
+					---------------------------
+						
+						Exec sp_rename 'dbo.old_table_name','new_table_name'
+						
+					Example - 
+					
+						exec sp_rename 'dbo.student','studentdetail'
+
+					Syntax to rename column name -
+					----------------------------
+						
+						Exec sp_rename 'table_name.old_column_name','new_column_name','column'
+						
+					Example - 
+						
+						exec sp_rename 'studentdetail.name','student_name','column';
+						
+		To copy  whole table data to a new table -
+	   ------------------------------------------
+	   
+	    Syntax -
+	   --------
+		                       
+			select * into 'table_name' from table_name
+			            (new table jisme data copy krna ho)
+			
+		Example - 
+		
+			select * into student from studentdetail
+							//here student is a new table where we copying the data from studentdetail table
+		
+		to copy whole table data to a new table from another database - 
+		--------------------------------------------------------------
+		
+		Syntax -
+		
+			select * into new_table_name from database_name.dbo.table_name 
+		
+		Example - 
+			
+			select * into emp from college.dbo.student
+			
+			
+To export only schema of database
+------------------------------------ 
+
+right click on database --> task -->generate script -->next --> select specific database object -> cancel
+
+to export database
+-------------------
+
+right click on database --> task -->generate script -->next --> select specific database object --> advance typpe of daa -->schema and data
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+6. 
+	
+	select avg(s.fee) from student s inner join classes c on s.class_id = c.class_id where c.categories = 'computer'

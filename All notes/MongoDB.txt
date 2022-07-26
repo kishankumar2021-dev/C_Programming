@@ -1,0 +1,376 @@
+How to connect to mongodb::-----
+***********************************
+1.open cmd 
+2.mongo : server
+3.initial start: error cannot write data into default path : C:/data/db/
+4.goto c: mkdir data>>cd data >>mkir db 
+
+
+
+How to Run mongoclient:---
+******************************************
+1.make sure your mongod server is runing.
+2.open another instance of cmd.
+3.type mongo
+mongo shell>>
+>
+Importent settings of mongo:
+************************************
+By default port:27017
+dbpath:C:data/db
+architecture:64-bit
+host :DESKTOP-N1OGJKU(local PC name)
+
+How to create a new databases:--
+*****************************************
+1.use command : databse created then select or if not it will create it .
+2.how to get current db :db command
+3.by default db :test
+
+
+By default object or Internal db of mongodb
+***********************************************
+1. show databases
+	1.admin 0.000GB Rounund figure GB
+	2.config 0.000GB              |-Secondry
+	3.local 0.000GB               _|
+	4.test 0.0000GB               --Primary
+
+NOTE:Since the databases size variation in GB, we will never be able to know any major chargesin database
+size
+
+How to see list of collection in current databases:
+*************************************************
+1.Use <db-name>
+2.Show collections
+	collection-1
+	collection-2
+	collection-3
+	..................
+	................
+	collection-n
+	
+	or
+	
+3.db.getCollectioNames()
+	["colletion-1","collection-2","colletion-3",....."colletion-n",]
+	
+show collections: Query or statement
+db.getColletionNames():procedure
+
+Mongo Support two types of statements:
+*******************************************
+1.Query Statements: Lower case without semicolon
+2.Pocedure Statement:Functions calls:csmelCase without semicolon.
+
+How to see list of the records in a collections:(select*from<table-name>)
+***********************************************************************
+db.<db-collection-name>.find():Using this we can find the all record stored in a collection.
+
+
+How to create s new collection:(create table)
+************************************************
+db.createCollection("<collection-name>")
+
+	
+	
+How to insert a doccument-object or a object:
+*********************************************
+Note :: here,one object is equivalent to row ,or Record
+
+
+Type of insert:
+*********************
+1.Single insert:insert as array of object {}
+2.Bulk insert: insert as array of Object[{},{},{}.....]
+
+db.<collection-name>.insert()
+
+How to find the all insert Record:
+*************************************
+db.emp.find()
+{"_d":Object("6198a8f99888yh8y0y09"),"roll":1001,"name":"kishan","mark":100}
+
+System 32 Bit : 12 hexadwcimal object Id.
+system 64 bit : 24 hexadwcimal object Id.
+
+*****************************************************************************
+
+Server ---->32Bit --->Mysql--->Pk --->integer 11
+Server ---->64Bit --->Mysql--->Pk --->integer 11
+Server ---->64Bit --->Mysql--->Pk --->integer 20
+
+"Id" :  Primary key : ObjectID
+
+Object ID :system Architecture and its minimum Architecture 32 Bit
+64 Bit ----->24 Bit 
+32 Bit -----12 Bit 
+
+4 Bytes : timestamp :hexadecimal format 01.01.1970 12.00 am to 07-01-2022 in second timestamp
+3 Bytes : Mac-address id 
+2 Bytes : process_id (pid)
+3 bytes : random numbers
+
+61d863df9cc262add0e158dd => some sort Hashing Algorithms.
+In application we can store this "_Id" store in session for updating and deleting the data.
+
+
+
+How to see data after bulk insert :db.emp.find()
+**********************************************
+>db.<collection-name>.find()
+>db.<collection-name>.find().pretty()
+
+How to featch records on the basis of some conditions or predicates:
+********************************************************************
+
+syntax:
+ db.<collection-name>.find({key:value})
+ SQL :select  * from collection-name where key='value';
+keywords in Mongo :$keywords
+
+!=: $ne
+>=: $gte
+<=: $gt
+< : $It
+<=: $gte
+
+syntax:
+	db.<collection-name>.find({key:{$keyword:value}})
+	SQL : select *from collection-name where key!='value';
+
+25/01/2022
+*******************************************
+How to featch records in particular column?:
+**********************************************
+Syntax: 
+In order to use collection names
+db.<collection-name>.find({condition},{<column-names>:<0 or 1>})
+
+0: hide
+1: show
+
+Mongodb---->switch --->all columns are shown
+emp_id :1
+emp_name:1
+class:1
+
+emp_id:0
+emp_name:0
+class:0
+
+
+Example:
+
+{ "_id" : ObjectId("61ee2d3a35bcae25ab75d575"), "roll" : 1001, "name" : "vinay", "marks" : 100 }
+{ "_id" : ObjectId("61ee3764da2b245b74e01034"), "roll" : 1001, "name" : "kishan", "mark" : 100 }
+{ "_id" : ObjectId("61ee3e6cda2b245b74e01035"), "roll" : 1002, "name" : "vinay", "mark" : 100 }
+{ "_id" : ObjectId("61ee3e6cda2b245b74e01036"), "roll" : 1003, "name" : "shani", "mark" : 90 }
+{ "_id" : ObjectId("61ee3e6cda2b245b74e01037"), "roll" : 1004, "name" : "abrar", "mark" : 80 }
+
+db.student.find({},{name:1,_id:0})
+
+Using And and Or Condition in mongoDB:
+*************************************************
+$keywords : $and,$or
+
+Ex:
+ db.collection.find()
+ SQL:Select * from collection
+
+Ex:
+db.employee.find({collection},{collection in columns})
+db.collection.find({$and:})
+SQL:select*from collection where condition ='somethig' and condition ='something';
+
+{$and:[{condition:'something'},{condition-key:'somethig'}]}
+
+>db.student.find({and:{name:"ravi",mark:50}})
+Error:
+*********
+error:{
+		"OK":0,
+		"errmsg":"$and must be an array",
+		"code":2,
+		"codename":"Badvalue"
+		
+}
+
+>db.student.find({$and:[{name:"ravi",marks:50}]})
+{"_id":ObjectId("6726jgfhd987826372638bnj"),"roll":1001."name":"ravi","mark":50}
+
+Example of How to combine multiple Condition with mongoDB using or:
+********************************************************************
+>db.student.find({$or:[{roll:1002},{marks:{$gt:50}}]}).pretty()
+
+How to update the record in,MongoDB
+**********************************
+In mongoDB update work on following manner =>number of mstching recods, if no mstching records
+equal = 1,update will work if number of matching is more than one only the top most record will 
+be updated.
+
+So in order to update multi-record we need specify the multi as true 
+
+Syntax:
+*******
+	SQL:update table-name set
+		column = value,colmn = value,column = value where $condition = 'something';
+		
+		>db.collection.find({condition},{configuration})
+		
+		or
+		
+		we use $set:[{key:value},{key:value},{key:value}]
+		
+		db.collection.update({condition},{$set:{key:value,key:value,key:value}},{multi:true|fslse})
+		
+		db.emp.update({emp_id:{$gte:1007}},{set:{emp_name:"kishan"}},{multi:true})
+		
+
+
+Using And and or condition in momgodb:--
+********************************************
+$keyword : $and  , $or
+Eg:-
+db.collection.find()
+SQl : select *from collection
+
+Ex:
+db.employee.find({condtion},{selection in columns})
+db.collection.find({$and:})
+
+SQL : select * from collection where condition = 'something' and conditon = 'somethig';
+	{$and:[{condition-key:'something'},{condition-key:'something'}]}
+	
+>db.student.find({$and:{name:"ravi",mark:50}})
+{ "" }
+
+Example or How to combine Multiple Condition with Mongo-db using or
+********************************************************************
+> db.student.find({$or:[{roll:1002},{mark:{$gt:50}}]}).pretty()
+
+How to update the record in matching:--
+*****************************************
+in mongodb update work on following manner => no of  matching record,
+of no of matching records equal = 1,update will work
+if no of matching is more than only the top most records will be update
+
+so inorder to, update multiple multi-record we need specify the multi as true 
+
+Syntax:
+SQl : update table-name set
+column=value ,column=value,column=value where $condition='somethig';
+
+>db.collection.find({conditoin},{configration})
+
+or
+
+we use $set:[{key:value},{key:value},{key:value}]
+
+db.collection.update({condition},{$set:{key:value,key:value,key:value}},{multi:true|false})
+db.emp.update({emp:_id:{$gte:1007}},{$set:{emp_name:"kishan"}},{multi:true})
+
+How to delete the record in Mongodb:--
+*****************************************
+
+we use db.collection.remove({condition},{true|false})
+
+Diffrence B/W update and delete
+************************************
+by default delete deletes all the matching record 
+but if you want to delete only single matching records we are specify true.
+
+By dafault in update it updates only first records but if you want to update all the matching 
+records then,we specify mylti:true
+
+**************************************************************************
+
+Upsert in MongoDB:---
+**********************************
+upsert = update + insert
+if match => 1 update (found or pre-exitiig)
+if not match = 0 insert (not found)
+
+Syntax:
+db.collection.update({condtion},{key:value,key:value,Key:value},{upsert:true})
+
+*******************************************************
+Limiting the Query:--
+*********************************
+limit(n) method : to limit the Query
+db.collection.limit(n)
+db.emp.find.limit(n)
+
+
+Skkiping the Query:-
+*******************************************
+when we run the limit Query top record to n record data is featched.
+when we run the Query top record to n will skkiped and remaining
+data will be retuned as a result.
+
+db.collection.find();//All Record
+db.collection.find().skip(n) ://
+
+How to clear the screen
+**************************************
+cls
+
+How to order the data in Momgodb:
+**************************************
+Since mongodb stores the in un-structured format, there is no logical arrangment or sequence.
+so in-order to manage that, user is explicity responsible to handel it.
+
+db.collection.sort({key:aesc|desc})
+aesc = 1
+desc = -1
+db.collection.find().sort({key:1})
+db.collection.find().sort({key:-1})
+
+How to create the indxes in MonogoDB.
+********************************************
+Indexes are used or created the particular column or key to extraxt the data or perfarming
+the searching very fast.
+
+In local db or for less number of recordes creating index will not effect the performance 
+but definatily if you have  cloud server where internet connection and large amount data like 
+1-lakh recods at a time is the constraint.
+
+
+In that case you can use the concept of indexse.
+
+How to Indexs works:---
+**************************************************
+They organise the groups into differnt blocks of records called as pages internally in db catalogue
+and when ever we want to featch the record instead of searching it from top to bottom 
+line by line it will directly jump into that page.
+
+indxes are similar to block Indexs
+Index
+*************
+Unit 1----------------->Page 1 to 5
+Unit 2----------------->Page 10 to 15
+Unit 3----------------->Page 20 to 25
+Unit 4----------------->Page 100 to 105
+
+Order Version of Mongo:--
+*********************
+db.collection.ensureIndex({column_name:1})
+1:Create index
+db.collection.ensureIndex() this is replace by createIndex
+db.emp.createIndex({emp_id:1})
+
+
+
+Join and Relationship with multiple Collection set:
+*************************************************
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,207 @@
+===============================04/01/2022=================================
+****************************BOOTSTRAP -->5*******************************
+BOOTSTRAP
+*********
+=>Boostrap is used to create responsive websites and application.
+=>Boostrap was devlpoed by mark Otto and Jakon Thornton at Twiter .
+=>Boostrap was realesed in 2011(v1) 
+=>Lates version of bootstrap is bootstrap 5.
+=>bootstrap provides predefined classes.
+=>Boostrap is used to faster and easier web development .
+=>to use to bootstrap fristly we have to link library of bootstrap from www.getbootstrap.com.
+=>it include HTML,CSS,nad Javascript.
+bootstrap color:--
+***********
+1.primary
+2.secondery 
+3.danger 
+4.succcess
+5.info
+6.warning
+7.dark
+8.light
+
+-----------------------------
+Background
+----------------------------
+bg-succcess
+bg-danger
+bg-secondery
+bg-light
+bg-dark
+bg-warning
+bg-info
+
+Example:-
+<div class="bg-primary h1">WELCOME TO BOOTSTARAP WORLD</div>
+
+--------------------------
+text-color::--
+--------------------------
+text-danger
+text-light
+text-muted
+
+Example:-
+<h1 class="text-light " >WELCOME TO THE TECHPILE TECHNOLOGY</h1>
+--------------------------
+Spacing 
+
+padding
+------------------------
+[0-5]
+p=> top left right bottom
+pt=> padding top
+ps=>padding start | padding left
+pe=>padding end | padding right
+pb=> padding bottom
+px=>padding left and padding right 
+py=>padding top and padding bottom
+
+Example:--
+<h1 class="bg-danger text-light pt-5 pb-3 ps-3 pe-5" >WELCOME TO THE TECHPILE TECHNOLOGY</h1>
+
+----------------------------------
+Margin 
+
+0-5]
+m=> top left right bottom
+mt=> margin top
+ms=>margin start | margin left
+me=>margin end | margin right
+mb=> margin bottom
+mx=>margin left and margin right 
+my=>margin top and margin bottom
+
+----------------------------------
+z
+width=>
+w-25 || width 25%
+w-50 || width 50%
+w-75 || width 75%
+w-100 || width 100%
+
+Example:
+<h1 class="bg-danger w-50">WELCOME TO THE TECHPILE TECHNOLOGY</h1>
+
+------------------------------------------
+Font
+----------------------------
+fs || font-size(1-6)
+fw-bold
+fw-bolder
+fw-light
+fw-lighter
+fw-normal
+fw-italic  || italic || font-style
+fst-normal ||
+
+text-uppercase
+text-lowercase
+text-capitlize
+text-center
+text-start
+text-end
+
+------------------------------
+Border
+-----------------------------
+border-top
+border-bottom
+border-start
+border-end
+
+border-danger
+border-info
+border-warning
+border-0 (0-5) || width
+
+----------------------------------
+border-radius
+----------------------------------
+rounded
+rounded-top
+rounded-bottom
+rounded-start
+rounded-end
+rounded-circle
+rounded-pill
+
+----------------------------------
+Bootstrap button
+------------------------
+btn btn-danger
+btn btn-secondery
+btn btn-primary
+btn btn-warning
+btn btn-success
+btn btn-light
+btn btn-info
+btn btn-dark
+
+btn btn-outline-
+btn btn-outline-info
+btn btn-outline-light
+-------------------------------------------
+images Responsive
+
+img-fluid
+img-thumnail
+
+-----------------------------------------
+Breaking Points
+----------------
+sm-Small screen <=572px
+md=> Medium screen <=768px
+lg=>large screen <=992px
+xl=>Exrtra Large<=1200px
+
+Example:--
+<div class="col-md-4 a bg-warning">
+Boostrap is used to create responsive websites and application.
+Boostrap was devlpoed by mark Otto and 
+</div>
+---------------------------
+Justify-content-start
+Justify-content-end
+Justify-content-center
+Justify-content-between
+Justify-content-evenly
+Justify-content-around
+
+---------------------------------
+alert alert-success
+alert alert-danger
+alert alert-warning
+
+-----------------------------------
+<ulclass="list-group">
+<li class="list-group-item">HTML</li>
+<li class="list-group-item">CSS</li>
+<li class="list-group-item">JS</li>
+</ul>
+
+float-start
+float-end
+float-center
+
+********************************************
+08/01/2022
+For background opacity
+****************************
+bg-opacity-10
+bg-opacity-25
+bg-opacity-50
+bg-opacity-75
+
+
+
+
+
+
+
+
+
+
+
+
